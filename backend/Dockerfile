@@ -13,4 +13,5 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run the crawler when the container launches.
+CMD ["brownie", "compile"]
 CMD [ "python3", "./sleep.py" ]

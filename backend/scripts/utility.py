@@ -8,6 +8,8 @@ LOCAL_BLOCKCHAIN_ENVIRONMENTS = [
     "mainnet-fork",
     "binance-fork",
     "matic-fork",
+    # "mumbai_moralis",
+    "polygon-fork"
 ]
 
 def get_account(index=None, id=None):
