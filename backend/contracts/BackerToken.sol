@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 //
 contract BackerToken is ERC1155 {
 
-    // dynamic
+    // TODO make backing tiers dynamic
     enum BackingType {
         SMALL,
         MIDDLE,
@@ -15,8 +15,8 @@ contract BackerToken is ERC1155 {
     }
     string base_ipfs_uri = "https://ipfs.io/ipfs/Qmb8UbwYBk8ZY1UfNK3SrfXX6Ezkw2gPyqnGnehcuQBMCi/";
     mapping (uint256 => string) private _uris; //token id to uri
-
-    constructor() public ERC1155("https://ipfs.io/ipfs/QmZ5RnZdHqha4P4FubWaxZSz9yjz8LH3cKaRrCk7xDEAEa/{id}.json") {
+    constructor(string memory _ipfs_base_uri) public ERC1155(string(abi.encodePacked(_ipfs_base_uri,"{id}",".json"))) {
+        base_ipfs_uri = _ipfs_base_uri;
 
     }
     // content creator only

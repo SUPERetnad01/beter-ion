@@ -9,11 +9,11 @@ from scripts.utility import get_account
 
 def main():
     # start_project(10,1000,10000,20)
-    print(f"folder URL: ipfs/ipfs/{upload_dir_to_ipfs()}/")
-
+    base_uri = f"https://ipfs.io/ipfs/{upload_dir_to_ipfs()}/"
+    print(f"base uri: {base_uri}")
     acc = get_account()
     print("=== deploy contract ===")
-    bt = BackerToken.deploy({"from": acc})
+    bt = BackerToken.deploy(base_uri,{"from": acc})
     print(bt.balanceOf(acc,0))
     print("=== start project ===")
     tx = bt.startProject(500,200,1)
@@ -68,8 +68,7 @@ def mint_nfts(amount,body):
 def upload_dir_to_ipfs():
     with ipfshttpclient.connect() as client:
         hash = client.add("./metadata/polygon-fork",recursive=True)
-        print(hash)
-        print(hash[-1]["Hash"])
+        return hash[-1]["Hash"]
 
 def upload_to_ipfs(filepath):
     with Path(filepath).open("rb") as fp:
