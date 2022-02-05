@@ -20,12 +20,12 @@ contract BackerToken is ERC1155 {
 
     }
     // content creator only
-    function startProject(string memory tokenURI) public
+    function startProject(uint256 smallAmount, uint256 mediumAmount, uint256 largeAmount) public
     {
         // TODO decrease uint size
-        _mint(msg.sender,uint256(BackingType.SMALL),500,"");
-        _mint(msg.sender,uint256(BackingType.MIDDLE),200,"");
-        _mint(msg.sender,uint256(BackingType.LARGE),1,"");
+        _mint(msg.sender,uint256(BackingType.SMALL),smallAmount,"");
+        _mint(msg.sender,uint256(BackingType.MIDDLE),mediumAmount,"");
+        _mint(msg.sender,uint256(BackingType.LARGE),largeAmount,"");
 
         // mint all tokens that we need to mint for given creator
         // set data from given tokens

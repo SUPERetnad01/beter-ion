@@ -16,7 +16,7 @@ def main():
     bt = BackerToken.deploy({"from": acc})
     print(bt.balanceOf(acc,0))
     print("=== start project ===")
-    tx = bt.startProject("pizza")
+    tx = bt.startProject(500,200,1)
     tx.wait(1)
     print("=== balance of token 1")
     print(bt.balanceOf(acc,1))
@@ -27,20 +27,13 @@ def main():
     # # mint_nfts(0,0)
     # upload_dir_to_ipfs()
     # pass
-def start_project(revenue_shared,amount_of_tokens,total_worth,transfer_fee_for_creator):
+def start_project():
     # uint256 public shareOfRevenue; // not a float
     # address public projectAddress; // the address of the project
     # uint256 public transferFeeToCreator; // the % amount from selling the NFT
     # uint256 public transferFeeToOrg
 
-    value_per_token = (total_worth/amount_of_tokens)
-    percentage_of_total_revenue = revenue_shared/amount_of_tokens
-    body = backer_token_template
-    body["percentage"] = percentage_of_total_revenue
-    body["value"] = value_per_token
-    body["transfer_fee_for_creator"] = transfer_fee_for_creator
-    body["transfer_fee_for_creator"] = 0.02
-    mint_nfts(amount_of_tokens,body)
+
     pass
 
 def mint_nfts(amount,body):
